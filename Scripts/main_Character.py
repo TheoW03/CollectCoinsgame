@@ -1,5 +1,6 @@
 # from cmath import rect
 # from curses.textpad import rectangle
+# from curses.textpad import rectangle
 import pygame
 
 
@@ -24,4 +25,7 @@ class mainChar:
         return self.rectangle.x
     def getY(self):
         return self.rectangle.y
+    def setVector(self,x,y):
+        self.rectangle.x = x
+        self.rectangle.y = y
     
