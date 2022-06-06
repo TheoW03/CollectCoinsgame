@@ -23,23 +23,31 @@ coinObj = pygame.transform.scale(coin, (20, 20))
 coinRect = pygame.Rect(200, 100, 50, 40)
 coins = mainChar(coinRect)
 
+#text
+score = 0
+font = pygame.font.Font('freesansbold.ttf', 16)
+text = font.render('score: {}'.format(score), True, (0,0,0), (255,255,255))
 
 """
 draw sprites
 """
 def draw_sprites():
-    global sRect, m, coins
+    global sRect, m, coins,score
     color = (50.2, 50.2, 50.2)
     WIN.fill(color)
     WIN.blit(playerObj, m.getVector())
     WIN.blit(coinObj, coins.getVector())
+    text = font.render('score: {}'.format(score), True, (0,0,0), (255,255,255))
+    WIN.blit(text, (12,12))
     pygame.display.update()
 
 
 def doStuff():
-    global m, coins, WIN_HEIGHT, WIN_WIDTH
+    global m, coins, WIN_HEIGHT, WIN_WIDTH,score
+
     if(sRect.colliderect(coinRect)):
-        coins.setVector(random.randrange(50, WIN_HEIGHT),random.randrange(50, WIN_WIDTH))       
+        coins.setVector(random.randrange(50, WIN_HEIGHT),random.randrange(50, WIN_WIDTH))
+        score += 1       
 
 def events():
     global m, VEL
