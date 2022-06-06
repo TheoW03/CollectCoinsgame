@@ -1,2 +1,4 @@
 ./__pycache__
-.pyc
+*.pyc
+*.pyo
+Scripts/__pycache__/main_Character.cpython-310.pyc

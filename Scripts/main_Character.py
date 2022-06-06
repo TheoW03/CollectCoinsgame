@@ -6,14 +6,16 @@ import pygame
 class mainChar:
     def __init__ (self,rectangle):
         self.rectangle = rectangle
+    def setVelocity(self,vel):
+        self.vel = vel
     def move_up(self):
-        self.rectangle.y += 1
+        self.rectangle.y -= self.vel
     def move_down(self):
-        self.rectangle.y -= 1
+        self.rectangle.y += self.vel
     def move_right(self):
-        self.rectangle.x += 1
+        self.rectangle.x += self.vel
     def move_left(self):
-        self.rectangle.x  -= 1
+        self.rectangle.x  -= self.vel
     def getRectangle(self):
         return self.rectangle
     def getVector(self):
