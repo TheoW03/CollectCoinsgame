@@ -116,13 +116,13 @@ def events():
         return
     m.setVelocity(VEL)
     keys_pressed = pygame.key.get_pressed()
-    if(keys_pressed[pygame.K_a]):
+    if(keys_pressed[pygame.K_a] or keys_pressed[pygame.K_LEFT]):
         m.move_left()
-    if(keys_pressed[pygame.K_d]):
+    if(keys_pressed[pygame.K_d] or keys_pressed[pygame.K_RIGHT]):
         m.move_right()
-    if(keys_pressed[pygame.K_w]):
+    if(keys_pressed[pygame.K_w] or keys_pressed[pygame.K_UP]):
         m.move_up()
-    if(keys_pressed[pygame.K_s]):
+    if(keys_pressed[pygame.K_s] or keys_pressed[pygame.K_DOWN]):
         m.move_down()
 
 
