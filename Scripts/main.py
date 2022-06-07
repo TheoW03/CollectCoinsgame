@@ -7,6 +7,8 @@ import random
 import os
 
 pygame.init()
+
+#constants
 WIN_HEIGHT, WIN_WIDTH = 400, 400
 WIN = pygame.display.set_mode((WIN_HEIGHT, WIN_WIDTH))
 FPS = 60
@@ -31,8 +33,7 @@ coinObj = pygame.transform.scale(coin, (20, 20))
 coinRect = pygame.Rect(200, 100, 20, 20)
 coins = [mainChar(coinRect, coinObj)]
 
-# coinRect = pygame.Rect(200, 100, 50, 40)
-# coins = mainChar(coinRect)
+
 
 # text
 score = 0
@@ -53,6 +54,7 @@ def draw_sprites():
 
     color = (50.2, 50.2, 50.2)
     WIN.fill(color)
+    #render players
     WIN.blit(playerObj, m.getVector())
     for i in range(len(coins)):
         WIN.blit(coins[i].getScale(), coins[i].getVector())
@@ -60,6 +62,8 @@ def draw_sprites():
     text = font.render('score: {}'.format(score), True,(0, 0, 0), (255, 255, 255)) #score
     timeText = font.render('time: {}'.format(timeElaspsed), True, (0, 0, 0), (255, 255, 255)) #timer
     highscoreText = font.render('high score: {}'.format(highscore), True,(0, 0, 0), (255, 255, 255)) #high score
+
+    #if die
     if score <= -1:
         color = (255, 0, 0)
         WIN.fill(color)
@@ -67,6 +71,7 @@ def draw_sprites():
         dieText = dieFont.render("YOU DIED LOL", True, (0, 0, 0), (255, 255, 255))
         WIN.blit(dieText, (100, 200))
         die = True
+    #render text
     WIN.blit(timeText, (300, 12))
     WIN.blit(text, (12, 12))
     WIN.blit(highscoreText, (12, 360))
