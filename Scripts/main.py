@@ -11,6 +11,7 @@ pygame.init()
 #constants
 WIN_HEIGHT, WIN_WIDTH = 400, 400
 WIN = pygame.display.set_mode((WIN_HEIGHT, WIN_WIDTH))
+pygame.display.set_caption('collect coins')
 FPS = 60
 VEL = 2
 
