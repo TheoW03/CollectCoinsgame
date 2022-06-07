@@ -10,6 +10,8 @@ WIN_HEIGHT, WIN_WIDTH = 400, 400
 WIN = pygame.display.set_mode((WIN_HEIGHT, WIN_WIDTH))
 FPS = 60
 VEL = 2
+
+arr = []
 # maincharacter
 
 player = pygame.image.load(os.path.join('Sprites', 'sprite1.PNG'))
@@ -18,10 +20,14 @@ sRect = pygame.Rect(100, 100, 50, 40)
 m = mainChar(sRect)
 
 # coin
+
 coin = pygame.image.load(os.path.join('Sprites', 'Coins.PNG'))
 coinObj = pygame.transform.scale(coin, (20, 20))
 coinRect = pygame.Rect(200, 100, 50, 40)
-coins = mainChar(coinRect)
+coins = [mainChar(coinRect,coinObj)]
+
+# coinRect = pygame.Rect(200, 100, 50, 40)
+# coins = mainChar(coinRect)
 
 #text
 score = 0
@@ -33,22 +39,38 @@ draw sprites
 """
 def draw_sprites():
     global sRect, m, coins,score
+    r = random.randrange(0,4000)
+    if r < 10:
+        coins.append(mainChar(pygame.Rect(random.randrange(3,300), random.randrange(3,300), 50, 40),coinObj))
+    
     color = (50.2, 50.2, 50.2)
     WIN.fill(color)
     WIN.blit(playerObj, m.getVector())
-    WIN.blit(coinObj, coins.getVector())
+    for i in range(len(coins)):
+        WIN.blit(coins[i].getScale(), coins[i].getVector())
+
+    
     text = font.render('score: {}'.format(score), True, (0,0,0), (255,255,255))
     WIN.blit(text, (12,12))
     pygame.display.update()
 
+"""
+on collide method
+"""
 
 def doStuff():
     global m, coins, WIN_HEIGHT, WIN_WIDTH,score
+    for i in range(len(coins)):
+        if coins[i].getRectangle().colliderect(sRect):
+            coins[i].setVector(random.randrange(50, WIN_HEIGHT),random.randrange(50, WIN_WIDTH))
+            score += 1    
+    # if(.colliderect(sRect)):
+    #     coins.setVector(random.randrange(50, WIN_HEIGHT),random.randrange(50, WIN_WIDTH))
+    #        
 
-    if(sRect.colliderect(coinRect)):
-        coins.setVector(random.randrange(50, WIN_HEIGHT),random.randrange(50, WIN_WIDTH))
-        score += 1       
-
+"""
+key events
+"""
 def events():
     global m, VEL
     m.setVelocity(VEL)
@@ -62,7 +84,9 @@ def events():
     if(keys_pressed[pygame.K_s]):
         m.move_down()
 
-
+"""
+main loop
+"""
 def main():
     global sRect, m, FPS
     clock = pygame.time.Clock()

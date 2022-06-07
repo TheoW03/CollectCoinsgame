@@ -1,12 +1,19 @@
 # from cmath import rect
 # from curses.textpad import rectangle
 # from curses.textpad import rectangle
+from cmath import rect
+import re
 import pygame
 
 
 class mainChar:
-    def __init__ (self,rectangle):
+    def __init__ (self,rectangle,scale=None):
         self.rectangle = rectangle
+        if scale:
+            self.scale = scale
+    # def __init__(self,rectangle,scale):
+    #     self.rectangle = rectangle
+        
     def setVelocity(self,vel):
         self.vel = vel
     def move_up(self):
@@ -28,4 +35,6 @@ class mainChar:
     def setVector(self,x,y):
         self.rectangle.x = x
         self.rectangle.y = y
+    def getScale(self):
+        return self.scale
     
