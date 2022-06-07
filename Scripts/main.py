@@ -16,14 +16,14 @@ arr = []
 
 player = pygame.image.load(os.path.join('Sprites', 'sprite1.PNG'))
 playerObj = pygame.transform.scale(player, (30, 30))
-sRect = pygame.Rect(100, 100, 50, 40)
+sRect = pygame.Rect(100, 100, 30, 30)
 m = mainChar(sRect)
 
 # coin
 
 coin = pygame.image.load(os.path.join('Sprites', 'Coins.PNG'))
 coinObj = pygame.transform.scale(coin, (20, 20))
-coinRect = pygame.Rect(200, 100, 50, 40)
+coinRect = pygame.Rect(200, 100, 20, 20)
 coins = [mainChar(coinRect,coinObj)]
 
 # coinRect = pygame.Rect(200, 100, 50, 40)
@@ -41,7 +41,7 @@ def draw_sprites():
     global sRect, m, coins,score
     r = random.randrange(0,4000)
     if r < 10:
-        coins.append(mainChar(pygame.Rect(random.randrange(3,300), random.randrange(3,300), 50, 40),coinObj))
+        coins.append(mainChar(pygame.Rect(random.randrange(3,300), random.randrange(3,300), 20, 20),coinObj))
     
     color = (50.2, 50.2, 50.2)
     WIN.fill(color)
@@ -63,7 +63,11 @@ def doStuff():
     for i in range(len(coins)):
         if coins[i].getRectangle().colliderect(sRect):
             coins[i].setVector(random.randrange(50, WIN_HEIGHT),random.randrange(50, WIN_WIDTH))
-            score += 1    
+            score += 1
+    # if clearLast:
+    #     coins.pop()
+            
+     
     # if(.colliderect(sRect)):
     #     coins.setVector(random.randrange(50, WIN_HEIGHT),random.randrange(50, WIN_WIDTH))
     #        
