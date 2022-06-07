@@ -57,13 +57,9 @@ def draw_sprites():
     for i in range(len(coins)):
         WIN.blit(coins[i].getScale(), coins[i].getVector())
 
-    text = font.render('score: {}'.format(score), True,
-                       (0, 0, 0), (255, 255, 255))
-    timeText = font.render('time: {}'.format(
-        timeElaspsed), True, (0, 0, 0), (255, 255, 255))
-    highscoreText = font.render('highssocre: {}'.format(highscore), True,(0, 0, 0), (255, 255, 255))
-    # print(timeElaspsed)
-    #if die
+    text = font.render('score: {}'.format(score), True,(0, 0, 0), (255, 255, 255)) #score
+    timeText = font.render('time: {}'.format(timeElaspsed), True, (0, 0, 0), (255, 255, 255)) #timer
+    highscoreText = font.render('high score: {}'.format(highscore), True,(0, 0, 0), (255, 255, 255)) #high score
     if score <= -1:
         color = (255, 0, 0)
         WIN.fill(color)
